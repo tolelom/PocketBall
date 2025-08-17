@@ -17,9 +17,15 @@ public class PocketHole : MonoBehaviour
         // Tag가 Ball인 공만 처리
         if (other.CompareTag("Ball"))
         {
+            other.gameObject.transform.position = Vector2.zero;
             // 공 제거(또는 비활성화)
             other.gameObject.SetActive(false);
             // 점수 처리나 UI 업데이트 등 추가 로직 삽입 가능
+
+            if (BallManager2D.Instance.CheckBalls())
+            {
+                BallManager2D.Instance.SpawnBalls();
+            }
         }
     }
 }

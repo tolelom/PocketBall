@@ -83,7 +83,7 @@ public class BallManager2D : MonoBehaviour
     {
         Debug.Log($"Shoot start: {angle}, {power}");
 
-        // 파워를 8배로 임의 세팅
+        // 파워를 6배로 임의 세팅
         power = power * 6;
         
         float rad = angle * Mathf.Deg2Rad;
@@ -99,20 +99,25 @@ public class BallManager2D : MonoBehaviour
         Debug.Log($"Applied velocity: {_balls[0].linearVelocity}");
         Debug.Log("EndShoot");
     }
-    // public void Shoot(float angle, float power)
-    // {
-    //     Debug.Log($"Shoot start: {angle}, {power}");
-    //     
-    //     float rad = angle * Mathf.Deg2Rad;
-    //     Vector2 dir = new Vector2(Mathf.Sin(rad), Mathf.Cos(rad));
-    //     
-    //     _balls[0].linearVelocity = Vector2.zero;
-    //     _balls[0].AddForce(dir * power, ForceMode2D.Impulse);
-    //     
-    //     Debug.Log(_balls[0].linearVelocity);
-    //     Debug.Log("EndShoot");
-    // }
-    
+
+    public bool CheckBalls()
+    {
+        bool check = true;
+        for (int i = 1; i < 6; ++i)
+        {
+            if (Balls[i].transform.position.x == 0f && Balls[i].transform.position.y == 0f)
+                continue;
+            check = false;
+        }
+
+        return check;
+    }
+
+    private static bool op_Equality(Vector3 transformPosition, Vector2 zero)
+    {
+        throw new NotImplementedException();
+    }
+
     public Vector2[] GetBallPositions()
     {
         Vector2[] pts = new Vector2[_balls.Length];
