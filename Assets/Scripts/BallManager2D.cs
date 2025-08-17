@@ -70,7 +70,7 @@ public class BallManager2D : MonoBehaviour
         {
             rb.gravityScale = 0f;
             rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
-            rb.linearDamping = 0.5f;            // 선형 마찰
+            rb.linearDamping = 1f;            // 선형 마찰
             rb.angularDamping = 0f;       // 회전 감속 제거
             rb.freezeRotation = true;  // 회전 완전 고정
         }
@@ -82,7 +82,10 @@ public class BallManager2D : MonoBehaviour
     public void Shoot(float angle, float power)
     {
         Debug.Log($"Shoot start: {angle}, {power}");
-    
+
+        // 파워를 8배로 임의 세팅
+        power = power * 6;
+        
         float rad = angle * Mathf.Deg2Rad;
         Vector2 dir = new Vector2(Mathf.Sin(rad), Mathf.Cos(rad)).normalized;
     
